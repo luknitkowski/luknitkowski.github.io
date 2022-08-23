@@ -12,18 +12,18 @@ const init = () => {
 
   setTimeout(() => {
     logoContainer.style.transform= 'scale(5)'
-}, 1); ///1500
+}, 1500); ///1500
 
     setTimeout(() => {
         loadingPage.classList.add("loading-page-hide");
         const container = getEl('container')
         container.style.display = 'block'
          checkOnScroll()
-    }, 1);///3000
+    }, 3000);///3000
 
     setTimeout(() => {
       loadingPage.style.display = 'none'
-  }, 1); ///3500
+  }, 3500); ///3500
 }
 
 window.onload = () => {
