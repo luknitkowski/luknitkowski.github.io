@@ -30,6 +30,7 @@ body {
 
 #container {
   display: none;
+  width: 100vw;
 }
 
 #welcome-page {
@@ -1396,10 +1397,10 @@ p, h3, h4, h5, h2 {
   text-align: center;
 }
 
-#n-logo {
-  margin: 0;
-  color: red; 
-  animation: opacity01 3s;
+#n-logo-start {
+ width: 10vw;
+ height: 10vw;
+ opacity:0;
 }
 
 #logo-container {
@@ -1809,4 +1810,22 @@ p, h3, h4, h5, h2 {
     width: 100%;
   }
 
+}
+
+.margin-left-header-options{
+  transition: .1s;
+}
+
+.margin-left-header-options:hover{
+  cursor: pointer;
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  transform: scale(1.1);
+  color:#cc00ff
+}
+
+.active-option {
+  color: blue;
 }
