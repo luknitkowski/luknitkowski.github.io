@@ -1,147 +1,180 @@
+let prevScrollpos = window.scrollY
+let timeFixed;
+let activeMenu = 0;
+var events = new Events();
+var userPrefix;
+
 const getEl = (id) => document.getElementById(id);
 
 const init = () => {
   const loadingPage = getEl('loading-page')
   const logoContainer = getEl('logo-container')
-  
-  logoContainer.children[0].classList.add('first-child')
-  logoContainer.children[1].classList.add('second-child')
-  logoContainer.children[2].classList.add('third-child')
-  logoContainer.children[3].classList.add('fourth-child')
-  logoContainer.style.transition= '3s'
+  const nLogo = getEl('n-logo-start');
+
+  nLogo.style.animation = "opacity010 1s forwards";
+  logoContainer.style.transition = '3s'
 
   setTimeout(() => {
-    logoContainer.style.transform= 'scale(5)'
-}, 1500); ///1500
+    logoContainer.children[0].classList.add('first-child')
+    logoContainer.children[1].classList.add('second-child')
+    logoContainer.children[2].classList.add('third-child')
+    logoContainer.children[3].classList.add('fourth-child')
+  }, 1); ///1000
 
-    setTimeout(() => {
-        loadingPage.classList.add("loading-page-hide");
-        const container = getEl('container')
-        container.style.display = 'block'
-         checkOnScroll()
-    }, 3000);///3000
+  setTimeout(() => {
+    logoContainer.style.transform = 'scale(5)'
+  }, 1); ///2000
 
-    setTimeout(() => {
-      loadingPage.style.display = 'none'
-  }, 3500); ///3500
+  setTimeout(() => {
+    loadingPage.classList.add("loading-page-hide");
+    const container = getEl('container')
+    container.style.display = 'block'
+    checkOnScroll()
+  }, 1);///3000
+
+  setTimeout(() => {
+    loadingPage.style.display = 'none'
+  }, 1); ///3500
 }
 
 window.onload = () => {
-    init();
-    addFooterTekst()
+  init();
+  addFooterTekst()
 }
 
-
-let prevScrollpos = window.scrollY
-
-window.onscroll  = function() {
+window.onscroll = function () {
   checkOnScroll()
 };
 
-let timeFixed;
+
 
 const checkOnScroll = () => {
 
-    const vh = document.documentElement.clientHeight;
-    const childScroll = window.scrollY
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    console.log('checkOnScroll')
-    console.log(childScroll)
-    console.log(height)
-    var mybutton = getEl("myBtn");
-    if(timeFixed){
-      clearTimeout(timeFixed)
-    }
-      if (childScroll > 20) {
-        mybutton.style.display = "block";
-        mybutton.style.animation = "opacity010 1s forwards";
-      } else {
-        mybutton.style.animation = "opacity101 1s forwards";
-        timeFixed = setTimeout(() => {
-          mybutton.style.display = "none";
-        }, 1000);
-      }
-    
+  const vh = document.documentElement.clientHeight;
+  const childScroll = window.scrollY
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var mybutton = getEl("myBtn");
+  if (timeFixed) {
+    clearTimeout(timeFixed)
+  }
+  if (childScroll > 20) {
+    mybutton.style.display = "block";
+    mybutton.style.animation = "opacity010 1s forwards";
+  } else {
+    mybutton.style.animation = "opacity101 1s forwards";
+    timeFixed = setTimeout(() => {
+      mybutton.style.display = "none";
+    }, 1000);
+  }
 
-    const revealsLeft = document.querySelectorAll(".reveal-left");
-    const revealsRight = document.querySelectorAll(".reveal-right");
-    const revealsUp = document.querySelectorAll(".reveal-up");
-    const revealsDown = document.querySelectorAll(".reveal-down");
-    if(revealsLeft){
-      for (let i = 0; i < revealsLeft.length; i++) {
-        const windowHeight = window.innerHeight;
-        const elementTop = revealsLeft[i].getBoundingClientRect().top;
-        const elementVisible = 150;
-        if (elementTop < windowHeight - elementVisible) {
-          revealsLeft[i].classList.add("active");
-        }
-      }
-    }
-    if(revealsRight){
-      for (let i = 0; i < revealsRight.length; i++) {
-        const windowHeight = window.innerHeight;
-        const elementTop = revealsRight[i].getBoundingClientRect().top;
-        const elementVisible = 150;
-        if (elementTop < windowHeight - elementVisible) {
-          revealsRight[i].classList.add("active");
-        }
-      }
-    }
-    if(revealsUp){
-      for (let i = 0; i < revealsUp.length; i++) {
-        const windowHeight = window.innerHeight;
-        const elementTop = revealsUp[i].getBoundingClientRect().top;
-        const elementVisible = 150;
-        if (elementTop < windowHeight - elementVisible) {
-          revealsUp[i].classList.add("active");
-        } 
-      }
-    }
-    if(revealsDown){
-      for (let i = 0; i < revealsDown.length; i++) {
-        const windowHeight = window.innerHeight;
-        const elementTop = revealsDown[i].getBoundingClientRect().top;
-        const elementVisible = 150;
-        if (elementTop < windowHeight - elementVisible) {
-          revealsDown[i].classList.add("active");
-        } 
-      }
-    }
 
+  const revealsLeft = document.querySelectorAll(".reveal-left");
+  const revealsRight = document.querySelectorAll(".reveal-right");
+  const revealsUp = document.querySelectorAll(".reveal-up");
+  const revealsDown = document.querySelectorAll(".reveal-down");
+  if (revealsLeft) {
+    for (let i = 0; i < revealsLeft.length; i++) {
+      const windowHeight = window.innerHeight;
+      const elementTop = revealsLeft[i].getBoundingClientRect().top;
+      const elementVisible = 150;
+      if (elementTop < windowHeight - elementVisible) {
+        revealsLeft[i].classList.add("active");
+      }
+    }
+  }
+  if (revealsRight) {
+    for (let i = 0; i < revealsRight.length; i++) {
+      const windowHeight = window.innerHeight;
+      const elementTop = revealsRight[i].getBoundingClientRect().top;
+      const elementVisible = 150;
+      if (elementTop < windowHeight - elementVisible) {
+        revealsRight[i].classList.add("active");
+      }
+    }
+  }
+  if (revealsUp) {
+    for (let i = 0; i < revealsUp.length; i++) {
+      const windowHeight = window.innerHeight;
+      const elementTop = revealsUp[i].getBoundingClientRect().top;
+      const elementVisible = 150;
+      if (elementTop < windowHeight - elementVisible) {
+        revealsUp[i].classList.add("active");
+      }
+    }
+  }
+  if (revealsDown) {
+    for (let i = 0; i < revealsDown.length; i++) {
+      const windowHeight = window.innerHeight;
+      const elementTop = revealsDown[i].getBoundingClientRect().top;
+      const elementVisible = 150;
+      if (elementTop < windowHeight - elementVisible) {
+        revealsDown[i].classList.add("active");
+      }
+    }
+  }
+
+  getEl("header").style.top = "0";
+  const scrolled = (childScroll / height) * 100;
+  getEl("myBar").style.width = scrolled + "%";
+
+  if (childScroll < vh) {
+    getEl("header").style.top = "-60px";
+  } else if (childScroll < prevScrollpos) {
+    getEl("header").style.top = "-53px";
+  } else {
     getEl("header").style.top = "0";
-    const scrolled = (childScroll / height) * 100;
-    getEl("myBar").style.width = scrolled + "%";
+  }
+  prevScrollpos = childScroll
 
-    if(childScroll < vh ){
-        getEl("header").style.top = "-60px";
-    } else if(childScroll < prevScrollpos){
-      getEl("header").style.top = "-53px";
-    } else{
-      getEl("header").style.top = "0";
+  /// positons of menus
+  const home = getEl('welcome-page').getBoundingClientRect().y
+  const about = getEl('about-me-page').getBoundingClientRect().y
+  const exp = getEl('experience-page').getBoundingClientRect().y
+  const projects = getEl('projects-page').getBoundingClientRect().y
+  const hobbies = getEl('hobbies-page').getBoundingClientRect().y
+  const contact = getEl('contact-page').getBoundingClientRect().y
+  const listMenuPositions = [home, about, exp, projects, hobbies, contact]
+  for (var x = 0; x < listMenuPositions.length; x++) {
+    if (listMenuPositions[x + 1] > 0 && listMenuPositions[x + 1] < 1) {
+      const menuOptions = document.getElementsByClassName('menu-option')
+      menuOptions[activeMenu].classList.remove('active-option')
+      menuOptions[x + 1].classList.add('active-option')
+      activeMenu = x + 1
+      break;
     }
-    prevScrollpos = childScroll
+    if (x === listMenuPositions.length - 1 || (listMenuPositions[x] <= 0 && listMenuPositions[x + 1] > 0)) {
+      if (activeMenu === x) {
+        break;
+      }
+      const menuOptions = document.getElementsByClassName('menu-option')
+      menuOptions[activeMenu].classList.remove('active-option')
+      menuOptions[x].classList.add('active-option')
+      activeMenu = x
+      break;
+    }
+  }
+
 }
 
 const scrollToElement = (id) => {
-    const choosenEl = getEl(id)
-    choosenEl.scrollIntoView({behavior: "smooth"});
+  const choosenEl = getEl(id)
+  choosenEl.scrollIntoView({ behavior: "smooth" });
 }
 
-var events = new Events();
-events.add = function(obj) {
-  obj.events = { };
+events.add = function (obj) {
+  obj.events = {};
 }
-events.implement = function(fn) {
+events.implement = function (fn) {
   fn.prototype = Object.create(Events.prototype);
 }
 
 function Events() {
-  this.events = { };
+  this.events = {};
 }
-Events.prototype.on = function(name, fn) {
+Events.prototype.on = function (name, fn) {
   var events = this.events[name];
   if (events == undefined) {
-    this.events[name] = [ fn ];
+    this.events[name] = [fn];
     this.emit('event:on', fn);
   } else {
     if (events.indexOf(fn) == -1) {
@@ -151,11 +184,11 @@ Events.prototype.on = function(name, fn) {
   }
   return this;
 }
-Events.prototype.once = function(name, fn) {
+Events.prototype.once = function (name, fn) {
   var events = this.events[name];
   fn.once = true;
   if (!events) {
-    this.events[name] = [ fn ];
+    this.events[name] = [fn];
     this.emit('event:once', fn);
   } else {
     if (events.indexOf(fn) == -1) {
@@ -165,11 +198,11 @@ Events.prototype.once = function(name, fn) {
   }
   return this;
 }
-Events.prototype.emit = function(name, args) {
+Events.prototype.emit = function (name, args) {
   var events = this.events[name];
   if (events) {
     var i = events.length;
-    while(i--) {
+    while (i--) {
       if (events[i]) {
         events[i].call(this, args);
         if (events[i].once) {
@@ -180,7 +213,7 @@ Events.prototype.emit = function(name, args) {
   }
   return this;
 }
-Events.prototype.unbind = function(name, fn) {
+Events.prototype.unbind = function (name, fn) {
   if (name) {
     var events = this.events[name];
     if (events) {
@@ -195,18 +228,16 @@ Events.prototype.unbind = function(name, fn) {
     }
   } else {
     delete this.events;
-    this.events = { };
+    this.events = {};
   }
   return this;
 }
-
-var userPrefix;
 
 var prefix = (function () {
   var styles = window.getComputedStyle(document.documentElement, ''),
     pre = (Array.prototype.slice
       .call(styles)
-      .join('') 
+      .join('')
       .match(/-(moz|webkit|ms)-/) || (styles.OLink === '' && ['', 'o'])
     )[1],
     dom = ('WebKit|Moz|MS|O').match(new RegExp('(' + pre + ')', 'i'))[1];
@@ -219,7 +250,7 @@ var prefix = (function () {
 })();
 
 function bindEvent(element, type, handler) {
-  if(element.addEventListener) {
+  if (element.addEventListener) {
     element.addEventListener(type, handler, false);
   } else {
     element.attachEvent('on' + type, handler);
@@ -259,39 +290,39 @@ function Viewport(data) {
   this.calculatedSide = 0;
 
 
-  bindEvent(document, 'mousedown', function() {
+  bindEvent(document, 'mousedown', function () {
     self.down = true;
   });
 
-  bindEvent(document, 'mouseup', function() {
-    self.down = false;
-  });
-  
-  bindEvent(document, 'keyup', function() {
+  bindEvent(document, 'mouseup', function () {
     self.down = false;
   });
 
-  bindEvent(document, 'mousemove', function(e) {
+  bindEvent(document, 'keyup', function () {
+    self.down = false;
+  });
+
+  bindEvent(document, 'mousemove', function (e) {
     self.mouseX = e.pageX;
     self.mouseY = e.pageY;
   });
 
-  bindEvent(document, 'touchstart', function(e) {
+  bindEvent(document, 'touchstart', function (e) {
 
     self.down = true;
     e.touches ? e = e.touches[0] : null;
     self.mouseX = e.pageX / self.touchSensivity;
     self.mouseY = e.pageY / self.touchSensivity;
-    self.lastX  = self.mouseX;
-    self.lastY  = self.mouseY;
+    self.lastX = self.mouseX;
+    self.lastY = self.mouseY;
   });
 
-  bindEvent(document, 'touchmove', function(e) {
-    if(e.preventDefault) { 
-      e.preventDefault();
-    }
+  bindEvent(document, 'touchmove', function (e) {
 
-    if(e.touches.length == 1) {
+
+
+
+    if (e.touches.length == 1) {
 
       e.touches ? e = e.touches[0] : null;
 
@@ -301,15 +332,15 @@ function Viewport(data) {
     }
   });
 
-  bindEvent(document, 'touchend', function(e) {
+  bindEvent(document, 'touchend', function (e) {
     self.down = false;
-  });  
+  });
 
   setInterval(this.animate.bind(this), this.fps);
 
 }
 events.implement(Viewport);
-Viewport.prototype.animate = function() {
+Viewport.prototype.animate = function () {
 
   this.distanceX = (this.mouseX - this.lastX);
   this.distanceY = (this.mouseY - this.lastY);
@@ -317,29 +348,29 @@ Viewport.prototype.animate = function() {
   this.lastX = this.mouseX;
   this.lastY = this.mouseY;
 
-  if(this.down) {
+  if (this.down) {
     this.torqueX = this.torqueX * this.sensivityFade + (this.distanceX * this.speed - this.torqueX) * this.sensivity;
     this.torqueY = this.torqueY * this.sensivityFade + (this.distanceY * this.speed - this.torqueY) * this.sensivity;
   }
 
-  if(Math.abs(this.torqueX) > 1.0 || Math.abs(this.torqueY) > 1.0) {
-    if(!this.down) {
+  if (Math.abs(this.torqueX) > 1.0 || Math.abs(this.torqueY) > 1.0) {
+    if (!this.down) {
       this.torqueX *= this.sensivityFade;
       this.torqueY *= this.sensivityFade;
     }
 
     this.positionY -= this.torqueY;
 
-    if(this.positionY > 360) {
+    if (this.positionY > 360) {
       this.positionY -= 360;
-    } else if(this.positionY < 0) {
+    } else if (this.positionY < 0) {
       this.positionY += 360;
     }
 
-    if(this.positionY > 90 && this.positionY < 270) {
+    if (this.positionY > 90 && this.positionY < 270) {
       this.positionX -= this.torqueX;
 
-      if(!this.upsideDown) {
+      if (!this.upsideDown) {
         this.upsideDown = true;
         this.emit('upsideDown', { upsideDown: this.upsideDown });
       }
@@ -348,51 +379,51 @@ Viewport.prototype.animate = function() {
 
       this.positionX += this.torqueX;
 
-      if(this.upsideDown) {
+      if (this.upsideDown) {
         this.upsideDown = false;
         this.emit('upsideDown', { upsideDown: this.upsideDown });
       }
     }
 
-    if(this.positionX > 360) {
+    if (this.positionX > 360) {
       this.positionX -= 360;
-    } else if(this.positionX < 0) {
+    } else if (this.positionX < 0) {
       this.positionX += 360;
     }
 
-    if(!(this.positionY >= 46 && this.positionY <= 130) && !(this.positionY >= 220 && this.positionY <= 308)) {
-      if(this.upsideDown) {
-        if(this.positionX >= 42 && this.positionX <= 130) {
+    if (!(this.positionY >= 46 && this.positionY <= 130) && !(this.positionY >= 220 && this.positionY <= 308)) {
+      if (this.upsideDown) {
+        if (this.positionX >= 42 && this.positionX <= 130) {
           this.calculatedSide = 3;
-        } else if(this.positionX >= 131 && this.positionX <= 223) {
+        } else if (this.positionX >= 131 && this.positionX <= 223) {
           this.calculatedSide = 2;
-        } else if(this.positionX >= 224 && this.positionX <= 314) {
+        } else if (this.positionX >= 224 && this.positionX <= 314) {
           this.calculatedSide = 5;
         } else {
           this.calculatedSide = 4;
         }
       } else {
-        if(this.positionX >= 42 && this.positionX <= 130) {
+        if (this.positionX >= 42 && this.positionX <= 130) {
           this.calculatedSide = 5;
-        } else if(this.positionX >= 131 && this.positionX <= 223) {
+        } else if (this.positionX >= 131 && this.positionX <= 223) {
           this.calculatedSide = 4;
-        } else if(this.positionX >= 224 && this.positionX <= 314) {
+        } else if (this.positionX >= 224 && this.positionX <= 314) {
           this.calculatedSide = 3;
         } else {
           this.calculatedSide = 2;
         }
       }
     } else {
-      if(this.positionY >= 46 && this.positionY <= 130) {
+      if (this.positionY >= 46 && this.positionY <= 130) {
         this.calculatedSide = 6;
       }
 
-      if(this.positionY >= 220 && this.positionY <= 308) {
+      if (this.positionY >= 220 && this.positionY <= 308) {
         this.calculatedSide = 1;
       }
     }
 
-    if(this.calculatedSide !== this.currentSide) {
+    if (this.calculatedSide !== this.currentSide) {
       this.currentSide = this.calculatedSide;
       this.emit('sideChange');
     }
@@ -401,7 +432,7 @@ Viewport.prototype.animate = function() {
 
   this.element.style[userPrefix.js + 'Transform'] = 'rotateX(' + this.positionY + 'deg) rotateY(' + this.positionX + 'deg)';
 
-  if(this.positionY != this.previousPositionY || this.positionX != this.previousPositionX) {
+  if (this.positionY != this.previousPositionY || this.positionX != this.previousPositionX) {
     this.previousPositionY = this.positionY;
     this.previousPositionX = this.positionX;
 
@@ -438,7 +469,7 @@ const changeActiveHobbieText = (activeHobbie) => {
       textHobbie.innerText = 'Maybe I am no longer study physics and I am not a crazy scientist working in a secret laboratory. However I still try to be up to date with the latest discoveries in this field.';
       break;
     case 'trololo':
-      textHobbie.innerText = 'Sense of humor, because you have to be positive in life!';
+      textHobbie.innerText = 'The fantasy world allows the imagination to develop incredibly.';
       break;
     default:
       break;
@@ -452,19 +483,19 @@ function Cube(data) {
   this.sides = this.element.getElementsByClassName('side');
 
   this.viewport = data.viewport;
-  this.viewport.on('rotate', function() {
+  this.viewport.on('rotate', function () {
     self.rotateSides();
   });
-  this.viewport.on('upsideDown', function(obj) {
+  this.viewport.on('upsideDown', function (obj) {
     self.upsideDown(obj);
   });
-  this.viewport.on('sideChange', function() {
+  this.viewport.on('sideChange', function () {
     self.sideChange();
   });
 }
-Cube.prototype.rotateSides = function() {
+Cube.prototype.rotateSides = function () {
   var viewport = this.viewport;
-  if(viewport.positionY > 90 && viewport.positionY < 270) {
+  if (viewport.positionY > 90 && viewport.positionY < 270) {
     this.sides[0].getElementsByClassName('cube-image')[0].style[userPrefix.js + 'Transform'] = 'rotate(' + (viewport.positionX + viewport.torqueX) + 'deg)';
     this.sides[5].getElementsByClassName('cube-image')[0].style[userPrefix.js + 'Transform'] = 'rotate(' + -(viewport.positionX + 180 + viewport.torqueX) + 'deg)';
   } else {
@@ -472,23 +503,23 @@ Cube.prototype.rotateSides = function() {
     this.sides[5].getElementsByClassName('cube-image')[0].style[userPrefix.js + 'Transform'] = 'rotate(' + -(viewport.positionX + 180 - viewport.torqueX) + 'deg)';
   }
 }
-Cube.prototype.upsideDown = function(obj) {
+Cube.prototype.upsideDown = function (obj) {
 
   var deg = (obj.upsideDown == true) ? '180deg' : '0deg';
   var i = 5;
 
-  while(i > 0 && --i) {
+  while (i > 0 && --i) {
     this.sides[i].getElementsByClassName('cube-image')[0].style[userPrefix.js + 'Transform'] = 'rotate(' + deg + ')';
   }
 }
-Cube.prototype.sideChange = function() {
+Cube.prototype.sideChange = function () {
 
-  for(var i = 0; i < this.sides.length; ++i) {
-    this.sides[i].getElementsByClassName('cube-image')[0].className = 'cube-image';    
+  for (var i = 0; i < this.sides.length; ++i) {
+    this.sides[i].getElementsByClassName('cube-image')[0].className = 'cube-image';
   }
 
   this.sides[this.viewport.currentSide - 1].getElementsByClassName('cube-image')[0].className = 'cube-image active';
-  const activeHobbie =  this.sides[this.viewport.currentSide - 1].getElementsByClassName('cube-image')[0].dataset.hobbie
+  const activeHobbie = this.sides[this.viewport.currentSide - 1].getElementsByClassName('cube-image')[0].dataset.hobbie
   changeActiveHobbieText(activeHobbie)
 }
 
@@ -499,10 +530,10 @@ new Cube({
 
 const scrollToTop = () => {
   const child = window
-  child.scrollTo({top: 0, behavior: 'smooth'});
+  child.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-const  openVerticalMenu = () => {
+const openVerticalMenu = () => {
   console.log('1')
 }
 
@@ -511,6 +542,6 @@ const addFooterTekst = () => {
   footerTekst.innerText = `@${new Date().getFullYear()} designed by Netfusion Łukasz Nitkowski`
 }
 
-document.querySelector( "#retrobg-sun" ).onclick = () => {
-  document.querySelector( "#retrobg" ).classList.toggle( "retrobg-shutdown" );
+document.querySelector("#retrobg-sun").onclick = () => {
+  document.querySelector("#retrobg").classList.toggle("retrobg-shutdown");
 };
