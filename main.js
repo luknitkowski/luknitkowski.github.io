@@ -19,22 +19,22 @@ const init = () => {
     logoContainer.children[1].classList.add('second-child')
     logoContainer.children[2].classList.add('third-child')
     logoContainer.children[3].classList.add('fourth-child')
-  }, 1); ///1000
+  }, 1000); ///1000
 
   setTimeout(() => {
     logoContainer.style.transform = 'scale(5)'
-  }, 1); ///2000
+  }, 2000); ///2000
 
   setTimeout(() => {
     loadingPage.classList.add("loading-page-hide");
     const container = getEl('container')
     container.style.display = 'block'
     checkOnScroll()
-  }, 1);///3000
+  }, 3000);///3000
 
   setTimeout(() => {
     loadingPage.style.display = 'none'
-  }, 1); ///3500
+  }, 3500); ///3500
 }
 
 window.onload = () => {
