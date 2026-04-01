@@ -1,3 +1,20 @@
+:root {
+  --color-bg-deep: #000020;
+  --gradient-brand-h: linear-gradient(
+    90deg,
+    rgba(0, 0, 255, 1) 0%,
+    rgba(253, 29, 29, 1) 77%,
+    rgba(255, 0, 0, 1) 100%
+  );
+  --gradient-brand-v: linear-gradient(
+    0deg,
+    rgba(0, 0, 255, 1) 0%,
+    rgba(253, 29, 29, 1) 77%,
+    rgba(255, 0, 0, 1) 100%
+  );
+  --gradient-brand-diag: linear-gradient(-45deg, #ff0000 0%, #0000ff 100%);
+}
+
 body {
   font-family: "Orbitron", sans-serif;
   margin: 0;
@@ -15,16 +32,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #000020;
+  background-color: var(--color-bg-deep);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    0deg,
-    rgba(0, 0, 255, 1) 0%,
-    rgba(253, 29, 29, 1) 77%,
-    rgba(255, 0, 0, 1) 100%
-  );
+  background: var(--gradient-brand-v);
   border-radius: 10px;
 }
 
@@ -60,12 +72,7 @@ body {
 .progress-bar {
   height: 8px;
   background: rgb(0, 0, 255);
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 255, 1) 0%,
-    rgba(253, 29, 29, 1) 77%,
-    rgba(255, 0, 0, 1) 100%
-  );
+  background: var(--gradient-brand-h);
   width: 0%;
 }
 
@@ -81,13 +88,13 @@ body {
 }
 
 .basic-background {
-  background: #000020;
+  background: var(--color-bg-deep);
   position: relative;
   padding: 40px;
 }
 
 .basic-background2 {
-  background: #000020;
+  background: var(--color-bg-deep);
   position: relative;
   padding: 40px;
   min-height: 100vh;
@@ -168,12 +175,7 @@ body {
   width: 50px;
   height: 50px;
   border: 1px solid rgba(185, 10, 208, 1);
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 255, 1) 0%,
-    rgba(253, 29, 29, 1) 77%,
-    rgba(255, 0, 0, 1) 100%
-  );
+  background: var(--gradient-brand-h);
   opacity: 0.5;
   transition: 0.3s;
 }
@@ -186,12 +188,7 @@ body {
   -ms-transform: scale(1.1);
   -o-transform: scale(1.1);
   transform: scale(1.1);
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 255, 1) 0%,
-    rgba(253, 29, 29, 1) 77%,
-    rgba(255, 0, 0, 1) 100%
-  );
+  background: var(--gradient-brand-h);
   opacity: 1 !important;
 }
 
@@ -964,7 +961,7 @@ h2 {
   opacity: var(0.7);
   transition: opacity 0.3s;
   border-radius: inherit;
-  background: linear-gradient(-45deg, #ff0000 0%, #0000ff 100%);
+  background: var(--gradient-brand-diag);
   border-radius: 50%;
   width: 350px;
   height: 350px;
@@ -1035,12 +1032,7 @@ h2 {
 
 #myTopnav {
   display: flex;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 255, 1) 0%,
-    rgba(253, 29, 29, 1) 77%,
-    rgba(255, 0, 0, 1) 100%
-  );
+  background: var(--gradient-brand-h);
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -1106,53 +1098,14 @@ h2 {
   width: 100%;
 }
 
-.fill-skill :first-child {
+.fill-skill .skill-bar-fill {
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 255, 1) 0%,
-    rgba(253, 29, 29, 1) 77%,
-    rgba(255, 0, 0, 1) 100%
-  );
+  box-sizing: border-box;
+  background: var(--gradient-brand-h);
 }
 
 .smaller-font {
   font-size: 12px;
-}
-
-#skill-html {
-  width: 90%;
-}
-
-#skill-style {
-  width: 80%;
-}
-
-#skill-js {
-  width: 85%;
-}
-
-#skill-ts {
-  width: 80%;
-}
-
-#skill-react {
-  width: 85%;
-}
-#skill-react-native {
-  width: 80%;
-}
-
-#skill-angular {
-  width: 70%;
-}
-
-#skill-angularjs {
-  width: 70%;
-}
-
-#skill-nodejs {
-  width: 40%;
 }
 
 #thema-container {
@@ -1171,7 +1124,7 @@ h2 {
   position: relative;
   z-index: 1;
   padding: 20px;
-  background-color: #000020;
+  background-color: var(--color-bg-deep);
   margin: 50px;
   -webkit-transition: 100ms;
   -moz-transition: 100ms;
@@ -1205,7 +1158,7 @@ h2 {
 }
 
 .thema-block:hover::before {
-  background: linear-gradient(-45deg, #ff0000 0%, #0000ff 100%);
+  background: var(--gradient-brand-diag);
 }
 
 .thema-block::after {
@@ -1234,7 +1187,7 @@ h2 {
 }
 
 #footer {
-  background: linear-gradient(-45deg, #ff0000 0%, #0000ff 100%);
+  background: var(--gradient-brand-diag);
   padding: 5px;
   display: flex;
   justify-content: center;
@@ -1754,12 +1707,7 @@ h2 {
 #vertical-navbar {
   display: none;
   padding: 15px;
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 255, 1) 0%,
-    rgba(253, 29, 29, 1) 77%,
-    rgba(255, 0, 0, 1) 100%
-  );
+  background: var(--gradient-brand-h);
 }
 
 #wrapper-slider {
@@ -1846,7 +1794,7 @@ h2 {
 #loading-page {
   height: 100vh;
   width: 100vw;
-  background-color: #000020;
+  background-color: var(--color-bg-deep);
   position: absolute;
   display: flex;
   justify-content: center;

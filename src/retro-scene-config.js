@@ -1,0 +1,68 @@
+/** Dane sceny retro (welcome) — edytuj tutaj; DOM generuje main.js */
+
+export const RETRO_VLINE_COUNT = 53;
+export const RETRO_HLINE_COUNT = 8;
+
+/** @typedef {{ left: number, top: number, scale: number }} RetroStar */
+export const retroStars = [
+  { left: 5, top: 55, scale: 2 },
+  { left: 7, top: 5, scale: 2 },
+  { left: 10, top: 45, scale: 1 },
+  { left: 12, top: 35, scale: 1 },
+  { left: 15, top: 39, scale: 1 },
+  { left: 20, top: 10, scale: 1 },
+  { left: 35, top: 50, scale: 2 },
+  { left: 40, top: 16, scale: 2 },
+  { left: 43, top: 28, scale: 1 },
+  { left: 45, top: 30, scale: 3 },
+  { left: 55, top: 18, scale: 1 },
+  { left: 60, top: 23, scale: 1 },
+  { left: 62, top: 44, scale: 2 },
+  { left: 67, top: 27, scale: 1 },
+  { left: 75, top: 10, scale: 2 },
+  { left: 80, top: 25, scale: 1 },
+  { left: 83, top: 57, scale: 1 },
+  { left: 90, top: 29, scale: 2 },
+  { left: 95, top: 5, scale: 1 },
+  { left: 96, top: 72, scale: 1 },
+  { left: 98, top: 70, scale: 3 },
+];
+
+/** @typedef {{ left: number, height: number, width: number, antenna?: boolean }} RetroBuilding */
+export const retroBuildings = [
+  { left: 4, height: 20, width: 3 },
+  { left: 6, height: 50, width: 1.5 },
+  { left: 8, height: 25, width: 4 },
+  { left: 12, height: 30, width: 3 },
+  { left: 13, height: 55, width: 3, antenna: true },
+  { left: 17, height: 20, width: 4 },
+  { left: 18.5, height: 70, width: 1.5 },
+  { left: 20, height: 30, width: 4 },
+  { left: 21.5, height: 80, width: 2, antenna: true },
+  { left: 25, height: 60, width: 4 },
+  { left: 28, height: 40, width: 4 },
+  { left: 30, height: 70, width: 4 },
+  { left: 35, height: 65, width: 4, antenna: true },
+  { left: 38, height: 40, width: 3 },
+  { left: 42, height: 60, width: 2 },
+  { left: 43, height: 85, width: 4, antenna: true },
+  { left: 45, height: 40, width: 3 },
+  { left: 48, height: 25, width: 3 },
+  { left: 50, height: 80, width: 4 },
+  { left: 52, height: 32, width: 5 },
+  { left: 55, height: 55, width: 3, antenna: true },
+  { left: 58, height: 45, width: 4 },
+  { left: 61, height: 90, width: 4 },
+  { left: 66, height: 99, width: 4, antenna: true },
+  { left: 69, height: 30, width: 4 },
+  { left: 73.5, height: 90, width: 2 },
+  { left: 72, height: 70, width: 4 },
+  { left: 75, height: 60, width: 4 },
+  { left: 80, height: 40, width: 4 },
+  { left: 83, height: 70, width: 4, antenna: true },
+  { left: 87, height: 60, width: 3, antenna: true },
+  { left: 93, height: 50, width: 3 },
+  { left: 91, height: 30, width: 4 },
+  { left: 94, height: 20, width: 3 },
+  { left: 98, height: 35, width: 2 },
+];

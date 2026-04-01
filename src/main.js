@@ -1,4 +1,17 @@
 import "./styles.css";
+import {
+  hobbiesSlides,
+  themaBlocks,
+  skillRows,
+  experienceRows,
+  projectRows,
+} from "./content-config.js";
+import {
+  retroStars,
+  retroBuildings,
+  RETRO_VLINE_COUNT,
+  RETRO_HLINE_COUNT,
+} from "./retro-scene-config.js";
 
 const REVEAL_SELECTOR = ".reveal-left, .reveal-right, .reveal-up, .reveal-down";
 const ELEMENT_VISIBLE = 150;
@@ -10,6 +23,200 @@ let indexCarousel = 0;
 let rafScrollId = 0;
 
 const getEl = (id) => document.getElementById(id);
+
+const renderRetroScene = () => {
+  const starsEl = getEl("retrobg-stars");
+  if (!starsEl) return;
+  starsEl.replaceChildren();
+  retroStars.forEach((s) => {
+    const el = document.createElement("div");
+    el.className = "retrobg-star";
+    el.style.left = `${s.left}%`;
+    el.style.top = `${s.top}%`;
+    el.style.transform = `scale(${s.scale})`;
+    starsEl.appendChild(el);
+  });
+
+  const cityEl = getEl("retrobg-city");
+  if (cityEl) {
+    cityEl.replaceChildren();
+    retroBuildings.forEach((b) => {
+      const el = document.createElement("div");
+      el.className = b.antenna
+        ? "retrobg-building retrobg-antenna"
+        : "retrobg-building";
+      el.style.left = `${b.left}%`;
+      el.style.height = `${b.height}%`;
+      el.style.width = `${b.width}%`;
+      cityEl.appendChild(el);
+    });
+  }
+
+  const vlinesEl = getEl("retrobg-vlines");
+  if (vlinesEl) {
+    vlinesEl.replaceChildren();
+    for (let i = 0; i < RETRO_VLINE_COUNT; i += 1) {
+      const el = document.createElement("div");
+      el.className = "retrobg-vline";
+      vlinesEl.appendChild(el);
+    }
+  }
+
+  const hlinesEl = getEl("retrobg-hlines");
+  if (hlinesEl) {
+    hlinesEl.replaceChildren();
+    for (let i = 0; i < RETRO_HLINE_COUNT; i += 1) {
+      const el = document.createElement("div");
+      el.className = "retrobg-hline";
+      hlinesEl.appendChild(el);
+    }
+  }
+};
+
+const renderHobbiesSlides = () => {
+  const slider = getEl("slider");
+  slider.replaceChildren();
+  hobbiesSlides.forEach((item) => {
+    const wrap = document.createElement("div");
+    const h3 = document.createElement("h3");
+    h3.textContent = item.title;
+    const p = document.createElement("p");
+    p.textContent = item.text;
+    wrap.appendChild(h3);
+    wrap.appendChild(p);
+    slider.appendChild(wrap);
+  });
+};
+
+const renderThemaBlocks = () => {
+  const root = getEl("thema-container");
+  root.replaceChildren();
+  themaBlocks.forEach((b) => {
+    const block = document.createElement("div");
+    block.className = b.blockClass;
+    const a = document.createElement("a");
+    a.href = b.href;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    const img = document.createElement("img");
+    img.src = b.image;
+    img.className = "about-image";
+    img.alt = "";
+    if (b.imageStyle) img.setAttribute("style", b.imageStyle);
+    const h3 = document.createElement("h3");
+    h3.textContent = b.title;
+    const p = document.createElement("p");
+    p.textContent = b.text;
+    block.appendChild(a);
+    block.appendChild(img);
+    block.appendChild(h3);
+    block.appendChild(p);
+    root.appendChild(block);
+  });
+};
+
+const renderSkillRows = () => {
+  const mount = getEl("skills-rows-mount");
+  mount.replaceChildren();
+  skillRows.forEach((row) => {
+    const rs = document.createElement("div");
+    rs.className = "row-skill";
+    const st = document.createElement("div");
+    st.className = "skill-type";
+    const pLabel = document.createElement("p");
+    if (row.smallerFont) pLabel.className = "smaller-font";
+    pLabel.textContent = row.label;
+    st.appendChild(pLabel);
+    const fill = document.createElement("div");
+    fill.className = "fill-skill";
+    const bar = document.createElement("div");
+    bar.id = row.barId;
+    bar.className = "skill-bar-fill";
+    bar.style.width = row.percent;
+    fill.appendChild(bar);
+    const pct = document.createElement("div");
+    pct.className = "percentage-skill";
+    const pPct = document.createElement("p");
+    pPct.textContent = row.percent;
+    pct.appendChild(pPct);
+    rs.appendChild(st);
+    rs.appendChild(fill);
+    rs.appendChild(pct);
+    mount.appendChild(rs);
+  });
+};
+
+const renderAlternatingRows = (containerId, rows) => {
+  const root = getEl(containerId);
+  root.replaceChildren();
+  rows.forEach((row) => {
+    const rowEl = document.createElement("div");
+    rowEl.className = "row-block-experience";
+    const fake = document.createElement("div");
+    fake.className = "fake-block-experience";
+    const sideClass =
+      row.side === "left"
+        ? "left-block-experience reveal-left"
+        : "right-block-experience reveal-right";
+    const content = document.createElement("div");
+    content.className = sideClass;
+    const h3 = document.createElement("h3");
+    h3.textContent = row.title;
+    content.appendChild(h3);
+    row.paragraphs.forEach((text) => {
+      const p = document.createElement("p");
+      p.textContent = text;
+      content.appendChild(p);
+    });
+    if (row.side === "left") {
+      rowEl.appendChild(content);
+      rowEl.appendChild(fake);
+    } else {
+      rowEl.appendChild(fake);
+      rowEl.appendChild(content);
+    }
+    root.appendChild(rowEl);
+  });
+};
+
+const mountSiteContent = () => {
+  renderRetroScene();
+  renderHobbiesSlides();
+  renderThemaBlocks();
+  renderSkillRows();
+  renderAlternatingRows("info-block-experience", experienceRows);
+  renderAlternatingRows("info-block-projects", projectRows);
+  indexCarousel = 0;
+  getEl("slider").style.transform = "translateX(-0%)";
+  updateCarouselChrome();
+};
+
+const updateCarouselChrome = () => {
+  const sliderEl = getEl("slider");
+  const maxIndex = Math.max(0, sliderEl.children.length - 1);
+  const left = getEl("arrow-left");
+  const right = getEl("arrow-right");
+  const leftSpan = left.querySelector("span");
+  const rightSpan = right.querySelector("span");
+  if (!leftSpan || !rightSpan || maxIndex === 0) return;
+
+  if (indexCarousel === 0) {
+    leftSpan.style.cursor = "default";
+    left.style.opacity = "0";
+    rightSpan.style.cursor = "pointer";
+    right.style.opacity = "1";
+  } else if (indexCarousel === maxIndex) {
+    leftSpan.style.cursor = "pointer";
+    left.style.opacity = "1";
+    rightSpan.style.cursor = "default";
+    right.style.opacity = "0";
+  } else {
+    leftSpan.style.cursor = "pointer";
+    left.style.opacity = "1";
+    rightSpan.style.cursor = "pointer";
+    right.style.opacity = "1";
+  }
+};
 
 const revealOnScroll = () => {
   const windowHeight = window.innerHeight;
@@ -113,6 +320,7 @@ const scrollToElement = (id, closeMenu) => {
 const slide = (direction) => {
   const sliderEl = getEl("slider");
   const maxIndex = sliderEl.children.length - 1;
+  if (maxIndex < 0) return;
   if (direction === "left") {
     if (indexCarousel === 0) return;
     indexCarousel -= 1;
@@ -122,28 +330,7 @@ const slide = (direction) => {
   }
 
   sliderEl.style.transform = `translateX(-${indexCarousel}00%)`;
-
-  const left = getEl("arrow-left");
-  const right = getEl("arrow-right");
-  const leftSpan = left.querySelector("span");
-  const rightSpan = right.querySelector("span");
-
-  if (indexCarousel === 0) {
-    leftSpan.style.cursor = "default";
-    left.style.opacity = "0";
-    rightSpan.style.cursor = "pointer";
-    right.style.opacity = "1";
-  } else if (indexCarousel === maxIndex) {
-    leftSpan.style.cursor = "pointer";
-    left.style.opacity = "1";
-    rightSpan.style.cursor = "default";
-    right.style.opacity = "0";
-  } else {
-    leftSpan.style.cursor = "pointer";
-    left.style.opacity = "1";
-    rightSpan.style.cursor = "pointer";
-    right.style.opacity = "1";
-  }
+  updateCarouselChrome();
 };
 
 const openVerticalMenu = () => {
@@ -245,6 +432,7 @@ const bindUi = () => {
 };
 
 window.addEventListener("load", () => {
+  mountSiteContent();
   bindUi();
   init();
   addFooterTekst();
