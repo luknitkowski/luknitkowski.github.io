@@ -14,6 +14,7 @@ module.exports = (env, argv) => {
       path: path.resolve(__dirname, "dist"),
       filename: isProd ? "[name].[contenthash].js" : "[name].js",
       publicPath: "./",
+      assetModuleFilename: "images/[name].[contenthash][ext]",
       clean: true,
     },
     devtool: isProd ? "source-map" : "eval-source-map",
@@ -59,7 +60,19 @@ module.exports = (env, argv) => {
           ]
         : []),
       new CopyWebpackPlugin({
-        patterns: [{ from: "images", to: "images" }],
+        patterns: [
+          {
+            from: "images",
+            to: "images",
+            globOptions: {
+              ignore: [
+                "**/welcome.jpeg",
+                "**/experience.jpeg",
+                "**/fusion.jpeg",
+              ],
+            },
+          },
+        ],
       }),
     ],
     optimization: {
