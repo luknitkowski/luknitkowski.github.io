@@ -2,6 +2,7 @@
 <html lang="en-GB">
 
 <head>
+  <meta charset="UTF-8">
   <link rel="apple-touch-icon" sizes="180x180" href="./images/favicon/apple-touch-icon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon/favicon-16x16.png">
@@ -9,20 +10,17 @@
   <link rel="mask-icon" href="./images/favicon/safari-pinned-tab.svg" color="#5bbad5">
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
-  <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Netfusion</title>
-  <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
 </head>
 
 <body>
-<div style="overflow-x: hidden;">
-  <div id="loading-page" style="height:100vh; width: 100vw;background-color: #000020; 
-  position: absolute; display: flex; justify-content: center; align-items: center; z-index: 10;">
+<div class="page-root">
+  <div id="loading-page">
     <a id="logo-container" href="#">
       <span></span>
       <span></span>
@@ -32,33 +30,30 @@
     </a>
   </div>
   <div id="container">
-    <button onclick="scrollToTop()" id="myBtn">&#8593</button>
+    <button type="button" id="myBtn" data-action="scroll-top" aria-label="Back to top">&#8593;</button>
     <div id="header">
       <div id="myTopnav">
-        <div style="display: flex;">
-          <img src="./images/logo.png"  style="width: 25px;
-          height: 25px;
-          position: relative;
-          top: 13px;"/>
+        <div class="mytopnav-brand">
+          <img src="./images/logo.png" alt="" class="header-logo-img" width="25" height="25"/>
           <p>etfusion</p>
         </div>
-        <div id="horizontal-navbar" style="width: 100%; display:flex;justify-content: flex-end; align-items: center;">
-          <p class="menu-option margin-left-header-options home-option active-option"  onclick="scrollToTop()" >Home</p>
-          <p class="menu-option margin-left-header-options about-me-page-option"  onclick="scrollToElement('about-me-page')" >About</p>
-          <p class="menu-option margin-left-header-options experience-page-option"  onclick="scrollToElement('experience-page')" >Experience</p>
-          <p class="menu-option margin-left-header-options projects-page-option"  onclick="scrollToElement('projects-page')" >Projects</p>
-          <p class="menu-option margin-left-header-options hobbies-page-option"  onclick="scrollToElement('hobbies-page')" >Hobbies</p>
-          <p class="menu-option margin-left-header-options contact-page-option"  onclick="scrollToElement('contact-page')" >Contact</p>
-          <img id="menu-icon" src="./images/menu-icon.svg" onclick="openVerticalMenu()"/>
+        <div id="horizontal-navbar">
+          <p class="menu-option margin-left-header-options home-option active-option" data-action="scroll-top">Home</p>
+          <p class="menu-option margin-left-header-options about-me-page-option" data-scroll="about-me-page">About</p>
+          <p class="menu-option margin-left-header-options experience-page-option" data-scroll="experience-page">Experience</p>
+          <p class="menu-option margin-left-header-options projects-page-option" data-scroll="projects-page">Projects</p>
+          <p class="menu-option margin-left-header-options hobbies-page-option" data-scroll="hobbies-page">Hobbies</p>
+          <p class="menu-option margin-left-header-options contact-page-option" data-scroll="contact-page">Contact</p>
+          <img id="menu-icon" src="./images/menu-icon.svg" alt="Open menu"/>
         </div>
       </div>
       <div id="vertical-navbar">
-        <p class="to-right vertical-menu-option home-option active-option" style="margin-top: 0;"  onclick="scrollToElement('home-page', true)" >Home</p>
-        <p class="to-right vertical-menu-option about-me-page-option"  onclick="scrollToElement('about-me-page', true)" >About</p>
-        <p class="to-right vertical-menu-option experience-page-option"  onclick="scrollToElement('experience-page', true)" >Experience</p>
-        <p class="to-right vertical-menu-option projects-page-option"  onclick="scrollToElement('projects-page', true)" >Projects</p>
-        <p class="to-right vertical-menu-option hobbies-page-option"  onclick="scrollToElement('hobbies-page', true)" >Hobbies</p>
-        <p class="to-right vertical-menu-option contact-page-option"  style="margin-bottom: 0;" onclick="scrollToElement('contact-page', true)" >Contact</p>
+        <p class="to-right vertical-menu-option home-option active-option vertical-menu-first" data-scroll="home-page" data-close-menu>Home</p>
+        <p class="to-right vertical-menu-option about-me-page-option" data-scroll="about-me-page" data-close-menu>About</p>
+        <p class="to-right vertical-menu-option experience-page-option" data-scroll="experience-page" data-close-menu>Experience</p>
+        <p class="to-right vertical-menu-option projects-page-option" data-scroll="projects-page" data-close-menu>Projects</p>
+        <p class="to-right vertical-menu-option hobbies-page-option" data-scroll="hobbies-page" data-close-menu>Hobbies</p>
+        <p class="to-right vertical-menu-option contact-page-option vertical-menu-last" data-scroll="contact-page" data-close-menu>Contact</p>
       </div>
       <div id="progress-container">
         <div class="progress-bar" id="myBar"></div>
@@ -72,7 +67,7 @@
           </div>
         </div>
         <div class="layer" data-depth="0.3" id="button-layer">
-          <div onclick="scrollToElement('about-me-page')" class="button">&#8595</div>
+          <div class="button" data-scroll="about-me-page" role="button" tabindex="0">&#8595;</div>
         </div>
       </div> 
       <div></div>
@@ -356,37 +351,37 @@
       <div id="thema-container" class="reveal-down">
         <div class="thema-block box">
           <a href="https://en.wikipedia.org/wiki/Frontend_and_backend#Front-end_focused" target="_blank"></a>
-          <img src="./images/html.png" id="about-image" />
+          <img src="./images/html.png" class="about-image" />
           <h3>Frontend</h3>
           <p>Connection of user with interface is the most important thing today</p>
         </div>
         <div class="thema-block">
           <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank"></a>
-          <img src="./images/js.png" id="about-image" />
+          <img src="./images/js.png" class="about-image" />
           <h3>Javascript</h3>
           <p>Using most popular programming language</p>
         </div>
         <div class="thema-block">
           <a href="https://en.wikipedia.org/wiki/Node.js" target="_blank"></a>
-          <img src="./images/nodejs.png" id="about-image" />
+          <img src="./images/nodejs.png" class="about-image" />
           <h3>NodeJS</h3>
           <p>Javascript on backend site makes life easier</p>
         </div>
         <div class="thema-block">
           <a href="https://en.wikipedia.org/wiki/Responsive_web_design" target="_blank"></a>
-          <img src="./images/rwd.png" id="about-image" />
+          <img src="./images/rwd.png" class="about-image" />
           <h3>RWD</h3>
           <p>Correttly working web app on all devices is the most important think</p>
         </div>
         <div class="thema-block">
           <a href="https://en.wikipedia.org/wiki/Scrum_(software_development)" target="_blank"></a>
-          <img src="./images/scrum.png" id="about-image" />
+          <img src="./images/scrum.png" class="about-image" />
           <h3>Scrum</h3>
           <p>One of the best and most efficient work models</p>
         </div>
         <div class="thema-block">
           <a href="https://uxplanet.org/what-is-ui-vs-ux-design-and-the-difference-d9113f6612de" target="_blank"></a>
-          <img src="./images/ux.png" id="about-image" style="background-color: white;"/>
+          <img src="./images/ux.png" class="about-image" style="background-color: white;"/>
           <h3>UI/UX</h3>
           <p>Great interface and simple use makes the user happy</p>
         </div>
@@ -642,7 +637,7 @@
       <div id="wrapper-slider"  class="reveal-up">
         <div id="arrow-left">
          
-            <span onclick="slide('left')">&lt;</span>
+            <span data-slide-dir="left" role="button" tabindex="0">&lt;</span>
          
         </div>
         <div id="slider-container">
@@ -673,7 +668,7 @@
         </div>
        
         <div id="arrow-right">
-            <span  onclick="slide('right')">&gt;</span>
+            <span data-slide-dir="right" role="button" tabindex="0">&gt;</span>
         </div>
       </div>
     </div>
@@ -682,8 +677,8 @@
         <h2 class="hero glitch layers" data-text="Contact"><span>Contact</span></h2>
       </div>
       <div id="contact-info">
-        <h3 styl="text-align: center; margin-top: 100px" class="reveal-down">
-          Although I am not looking for new projects at the moment, feel free to contact me via my profile on linkedin. I am not interested to working in the banking, gambling or government sectors:
+        <h3 style="text-align: center; margin-top: 100px" class="reveal-down">
+          Thank you for reaching out. At present I am not reviewing new vendor engagements, body-leasing, or staff-augmentation partnerships — my focus is on direct collaboration inside product-led organisations rather than outsourced delivery models. For aligned, in-house opportunities you are welcome to connect on LinkedIn; banking, gambling, and government-sector mandates remain outside the scope of what I pursue.
         </h3>
         <a href="https://www.linkedin.com/in/%C5%82ukasz-nitkowski-21025b132/" id="linkedin-button" target="_blank" class="reveal-down">
           <img src="./images/in.png" id="inImage" class="reveal-down"/>
@@ -692,10 +687,9 @@
     </div>
     <div id="footer">
       <p id="footer-tekst">@2022 Designed by Netfusion Łukasz Nitkowski</p>
-    </diV>
+    </div>
   </div>
 </div>
 </body>
-<script src="./main.js"></script>
 
 </html>

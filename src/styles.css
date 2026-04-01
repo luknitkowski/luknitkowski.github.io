@@ -3,6 +3,11 @@ body {
   margin: 0;
   width: 100vw;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 ::-webkit-scrollbar {
@@ -42,8 +47,6 @@ body {
   position: fixed;
   top: -60px;
   z-index: 5;
-  width: 100%;
-  display: none;
   width: 100%;
   display: block;
   transition: top 0.3s;
@@ -98,7 +101,7 @@ body {
   bottom: 0;
   opacity: 0.5;
   filter: blur(5px);
-  background: url(images/welcome.jpeg) center no-repeat;
+  background: url(../images/welcome.jpeg) center no-repeat;
   background-size: cover;
 }
 
@@ -110,7 +113,7 @@ body {
   bottom: 0;
   opacity: 0.5;
   filter: blur(5px);
-  background: url(images/experience.jpeg) center no-repeat;
+  background: url(../images/experience.jpeg) center no-repeat;
   background-size: cover;
 }
 
@@ -122,7 +125,7 @@ body {
   bottom: 0;
   opacity: 0.5;
   filter: blur(5px);
-  background: url(images/fusion.jpeg) center no-repeat;
+  background: url(../images/fusion.jpeg) center no-repeat;
   background-size: cover;
 }
 
@@ -190,14 +193,6 @@ body {
     rgba(255, 0, 0, 1) 100%
   );
   opacity: 1 !important;
-}
-
-body {
-  -webkit-font-smoothing: antialiased;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
 #parallax {
@@ -985,7 +980,7 @@ h2 {
   height: 350px;
 }
 
-#about-image {
+.about-image {
   width: 100px;
   height: 100px;
 }
@@ -1770,7 +1765,6 @@ h2 {
 #wrapper-slider {
   margin: auto;
   display: flex;
-  max-width: 800px;
   max-width: 1000px;
 }
 
@@ -1843,4 +1837,45 @@ h2 {
   #slider div {
     padding: 0;
   }
+}
+
+.page-root {
+  overflow-x: hidden;
+}
+
+#loading-page {
+  height: 100vh;
+  width: 100vw;
+  background-color: #000020;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.mytopnav-brand {
+  display: flex;
+}
+
+.header-logo-img {
+  width: 25px;
+  height: 25px;
+  position: relative;
+  top: 13px;
+}
+
+#horizontal-navbar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.vertical-menu-first {
+  margin-top: 0;
+}
+
+.vertical-menu-last {
+  margin-bottom: 0;
 }
