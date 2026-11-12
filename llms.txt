@@ -1,0 +1,29 @@
+# Łukasz Nitkowski — Senior Frontend Developer (Netfusion)
+
+> Self-employed Senior Frontend Developer from Poland with 7 years of commercial experience. Builds accessible, high-performance web applications in React, TypeScript and Next.js for international clients across finance, e-commerce, energy, sport and education.
+
+## Profile
+
+- Core stack: React (incl. React Compiler), TypeScript, Next.js, JavaScript (ES6+), HTML5, CSS / SCSS
+- Also: React Native, Angular / AngularJS, Svelte, Vue / Nuxt, Node.js, Express.js
+- State & data: Redux, Zustand, TanStack Query, REST, GraphQL
+- Quality: unit testing (Vitest, Jest, Testing Library), code review, accessibility (WCAG 2.2 AA), SEO, performance
+- AI-assisted development: GitHub Copilot, Cursor, Claude, ChatGPT, local LLMs, building agents (code review, accessibility)
+- Education: technical physics (energy conversion), Gdańsk University of Technology
+- Languages: Polish, English
+
+## Experience
+
+- Oke Poland | Hypersolid — Senior Frontend Developer, international projects with a Dutch team (until 08.2026)
+- Speednet — Frontend Developer (from 2022)
+- PwC — Junior → Mid Frontend Developer (4+ years, until 2022)
+- Energy companies — renewable-energy engineer (1 year)
+
+## Links
+
+- [Portfolio](https://luknitkowski.github.io/): about, experience timeline, projects, contact
+- [GitHub](https://github.com/luknitkowski)
+
+## Contact
+
+- E-mail: luknitkowski [at] gmail [dot] com
