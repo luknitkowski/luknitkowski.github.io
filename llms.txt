@@ -1,6 +1,6 @@
-# Łukasz Nitkowski — Senior Frontend Developer (Netfusion)
+# Łukasz Nitkowski — Fullstack Developer (Netfusion)
 
-> Self-employed Senior Frontend Developer from Poland with 7 years of commercial experience. Builds accessible, high-performance web applications in React, TypeScript and Next.js for international clients across finance, e-commerce, energy, sport and education.
+> Self-employed Fullstack Developer from Poland with 7 years of commercial experience. Builds accessible, high-performance web applications in React, TypeScript and Next.js for international clients across finance, e-commerce, energy, sport and education.
 
 ## Profile
 
